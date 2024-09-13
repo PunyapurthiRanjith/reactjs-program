@@ -1,11 +1,11 @@
-import FakeStoreCategories from "./components/class/category-product.jsx";
-import FakeStoreProducts from "./components/class/products.jsx";
+import AddCard from "./components/cards/addcards.jsx";
+import YoutubeButton from "./components/class/youtube-btn.jsx";
 
 function App() {
   return (
     <div>
-      <FakeStoreProducts/>
-      <FakeStoreCategories/>
+      <YoutubeButton/>
+      <AddCard/>
     </div>
   );
 }
