@@ -1,11 +1,11 @@
-import AddCard from "./components/cards/addcards.jsx";
-import YoutubeButton from "./components/class/youtube-btn.jsx";
+import Bulb from "./components/class/bulb.jsx";
+import ProductsTable from "./components/class/products-table.jsx";
 
 function App() {
   return (
     <div>
-      <YoutubeButton/>
-      <AddCard/>
+      <Bulb/>
+      <ProductsTable/>
     </div>
   );
 }
