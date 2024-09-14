@@ -1,0 +1,59 @@
+
+.main{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+.weather-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 60vw;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+    animation: fadeIn 1.5s ease-in-out;
+    transition: background 1.5s ease-in-out;
+  }
+  
+  .clear {
+    background-image: url('https://wallpapercave.com/wp/wp6680336.jpg'); 
+  }
+  
+  .cloudy {
+    background-image: url('https://tse1.mm.bing.net/th?id=OIP.kusuNQwqDGXNwzv6t2PeDwHaEK&pid=Api&P=0&h=180');
+  }
+  
+  .rainy {
+    background-image: url('https://png.pngtree.com/background/20210714/original/pngtree-rainy-sky-background-picture-image_1230127.jpg');
+  }
+  
+  .snowy {
+    background-image: url('https://tse4.mm.bing.net/th?id=OIP.bzzmTxlmbX5uXtBlBZS92gHaFS&pid=Api&P=0&h=180');
+  }
+  
+  .thunderstorm {
+    background-image: url('https://tse2.mm.bing.net/th?id=OIP.Oa8Ui9cZpchuJZy0PB4uOwHaEK&pid=Api&P=0&h=180');
+  }
+  
+  .weather-card {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  

@@ -1,11 +1,9 @@
-import Bulb from "./components/class/bulb.jsx";
-import ProductsTable from "./components/class/products-table.jsx";
+import WeatherApi from "./components/weather/weather-api.jsx";
 
 function App() {
   return (
     <div>
-      <Bulb/>
-      <ProductsTable/>
+      <WeatherApi/>
     </div>
   );
 }
