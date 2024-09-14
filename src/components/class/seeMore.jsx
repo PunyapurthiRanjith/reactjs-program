@@ -42,7 +42,9 @@ class SeeMore extends Component {
       <>
         <h1>Recipes of Dummy Json API</h1>
         {this.state.loader ? (
-          <CustomOval color={"black"} />
+          <div className="d-flex justify-content-center" style={{marginTop:"200px"}}>
+            <CustomOval color={"black"} />
+          </div>
         ) : (
           <>
             <h2>Recipe....</h2>
@@ -51,7 +53,7 @@ class SeeMore extends Component {
                 {this.state.recipes.map((each) => {
                   const isSelected = this.state.flag === each.id;
                   return (
-                    <div key={each.id} className="col-sm-4 m-3 border" style={{ width: "auto", padding: "10px" }}>
+                    <div key={each.id} className="col-sm-4 m-3 border" style={{ width: "400px", padding: "10px" }}>
                       <img src={each.image} alt="" style={{ width: "100%" }} />
                       <h3>{each.name}</h3>
                       <p>{each.rating}</p>

@@ -1,9 +1,9 @@
-import WeatherApi from "./components/weather/weather-api.jsx";
+import SeeMore from "./components/class/seeMore.jsx";
 
 function App() {
   return (
     <div>
-      <WeatherApi/>
+      <SeeMore/>
     </div>
   );
 }

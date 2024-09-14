@@ -4,7 +4,7 @@ const CustomOval = ({ color, width }) => {
   return (
     <Oval
       visible={true}
-      height="50"
+      height="100"
       width={width}
       color={color}
       ariaLabel="oval-loading"
