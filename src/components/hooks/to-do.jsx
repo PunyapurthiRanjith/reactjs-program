@@ -28,26 +28,32 @@ const ToDoList = () => {
     setToDo(updateTodo)
     
   }
+  const btnStyle={
+    background:"blue",
+    border: "1px solid black",
+    borderRadius: "5px",
+    color:"white"
+  }
   return (
     <>
-      <h1>todo list</h1>
-      <div className="border text-center p-3" style={{width:"400px",margin:"150px"}}>
-        <ol>
+      <div className="border text-center p-3" style={{width:"500px",margin:"150px"}}>
+        <div>
+          <h2>TODO List</h2>
+          <button style={btnStyle} onClick={addItemHandler}>Add Todo Item</button>
           {toDo.map((eachToDo) => {
             return (
               <React.Fragment key={eachToDo.id}>
-                <div>
-                  <li style={{ display: "inline" }}>{eachToDo.text}</li>
-                  <button onClick={() => removeItemHandler(eachToDo.id)}>
-                    remove
+                <div style={{margin:"10px", width:"450px"}} className="d-flex justify-content-around">
+                  <h3 style={{ display: "inline" }}>{eachToDo.text}</h3>
+                  <button style={btnStyle} onClick={()=>updateItemHandler(eachToDo.id)}>Update Todo</button>
+                  <button style={{background:"red", borderRadius:"5px"}} onClick={() => removeItemHandler(eachToDo.id)}>
+                    Remove Todo
                   </button>
-                  <button onClick={()=>updateItemHandler(eachToDo.id)}>update</button>
                 </div>
               </React.Fragment>
             );
           })}
-        </ol>
-        <button onClick={addItemHandler}>Add Item</button>
+        </div>
       </div> 
     </>
   );

@@ -1,9 +1,9 @@
-import SeeMore from "./components/class/seeMore.jsx";
+import ToDoList from "./components/hooks/to-do.jsx";
 
 function App() {
   return (
     <div>
-      <SeeMore/>
+      <ToDoList/>
     </div>
   );
 }
