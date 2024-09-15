@@ -1,9 +1,9 @@
-import ToDoList from "./components/hooks/to-do.jsx";
+import UncontrolledForm from "./components/form-uncontrol/forms.jsx";
 
 function App() {
   return (
     <div>
-      <ToDoList/>
+      <UncontrolledForm/>
     </div>
   );
 }
