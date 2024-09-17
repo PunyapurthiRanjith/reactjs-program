@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { errorToast, infoToast, successToast } from "../toasts/toasts-functions";
-import { ToastContainer } from "react-toastify";
 import axios from "axios";
 
 const FormTable = () => {
@@ -14,7 +13,7 @@ const FormTable = () => {
   const [modelSpan, setModelSpan] = useState("");
   const [mobileSpan, setMobileSpan] = useState("");
   const [complaintSpan, setComplaintSpan] = useState("");
-  const [formId, setFormId] = useState(1); 
+  const [formId, setFormId] = useState(1);
 
   useEffect(() => {
     const fetchLastId = async () => {
@@ -23,7 +22,7 @@ const FormTable = () => {
         const data = await response.json();
         if (data.length > 0) {
           const lastId = data[data.length - 1].id;
-          setFormId(lastId + 1); 
+          setFormId(lastId + 1);
         }
       } catch (error) {
         console.error("Error fetching last ID:", error);
@@ -77,7 +76,7 @@ const FormTable = () => {
       return;
     }
 
-    const formData = {
+    const formDataToSubmit = {
       id: formId,
       username,
       model,
@@ -91,7 +90,7 @@ const FormTable = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formDataToSubmit),
       });
 
       if (!response.ok) {
@@ -100,7 +99,7 @@ const FormTable = () => {
 
       successToast("Your data submitted successfully!");
 
-      fetchDetails();
+      setFormData((prevData) => [...prevData, formDataToSubmit]);
 
       setFormId(formId + 1);
       setUsername("");
@@ -175,102 +174,105 @@ const FormTable = () => {
   }, []);
 
   return (
-    <>
+    <div className=" d-flex flex-column border m-5 justify-content-center">
       <h1>Product Complaint Form</h1>
-      <ToastContainer />
+      <div className="w-50 border p-3 ">
+        <form onSubmit={submitHandler}>
+          <div className="mb-3 mt-3">
+            <label htmlFor="username" className="form-label">
+              Username:
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="username"
+              placeholder="Enter username"
+              name="username"
+              value={username}
+              onChange={usernameHandler}
+            />
+            <span style={{ color: "red" }}>{userSpan}</span>
+          </div>
+          <div className="mb-3 mt-3">
+            <label htmlFor="model" className="form-label">
+              Model:
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="model"
+              placeholder="Enter model"
+              name="model"
+              value={model}
+              onChange={modelHandler}
+            />
+            <span style={{ color: "red" }}>{modelSpan}</span>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="mobile" className="form-label">
+              Mobile Number:
+            </label>
+            <input
+              type="tel"
+              className="form-control"
+              id="mobile"
+              placeholder="Enter mobile number"
+              name="mobile"
+              value={mobile}
+              onChange={mobileHandler}
+            />
+            <span style={{ color: "red" }}>{mobileSpan}</span>
+          </div>
 
-      <form onSubmit={submitHandler}>
-        <div className="mb-3 mt-3">
-          <label htmlFor="username" className="form-label">
-            Username:
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            placeholder="Enter username"
-            name="username"
-            value={username}
-            onChange={usernameHandler}
-          />
-          <span style={{ color: "red" }}>{userSpan}</span>
-        </div>
-        <div className="mb-3 mt-3">
-          <label htmlFor="model" className="form-label">
-            Model:
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="model"
-            placeholder="Enter model"
-            name="model"
-            value={model}
-            onChange={modelHandler}
-          />
-          <span style={{ color: "red" }}>{modelSpan}</span>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="mobile" className="form-label">
-            Mobile Number:
-          </label>
-          <input
-            type="tel"
-            className="form-control"
-            id="mobile"
-            placeholder="Enter mobile number"
-            name="mobile"
-            value={mobile}
-            onChange={mobileHandler}
-          />
-          <span style={{ color: "red" }}>{mobileSpan}</span>
-        </div>
+          <div className="form-outline">
+            <label className="form-label" htmlFor="complaint">
+              Complaint:
+            </label>
+            <textarea
+              className="form-control"
+              id="complaint"
+              rows={4}
+              placeholder="Raise your complaint"
+              value={complaint}
+              onChange={complaintHandler}
+            />
+            <span style={{ color: "red" }}>{complaintSpan}</span>
+          </div>
 
-        <div className="form-outline">
-          <label className="form-label" htmlFor="complaint">
-            Complaint:
-          </label>
-          <textarea
-            className="form-control"
-            id="complaint"
-            rows={4}
-            placeholder="Raise your complaint"
-            value={complaint}
-            onChange={complaintHandler}
-          />
-          <span style={{ color: "red" }}>{complaintSpan}</span>
+          <div className="text-center m-2">
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+        <div className=" p-3 border">
+          <table>
+            <thead>
+              <tr>
+                <th style={{ border: "1px solid black" }}>S.No</th>
+                <th style={{ border: "1px solid black" }}>User Name</th>
+                <th style={{ border: "1px solid black" }}>Model Name</th>
+                <th style={{ border: "1px solid black" }}>Mobile Number</th>
+                <th style={{ border: "1px solid black" }}>Complaint</th>
+              </tr>
+            </thead>
+            <tbody>
+              {formData.map((each, index) => (
+                <tr key={each.id}>
+                  <td style={{ border: "1px solid black", padding: "2px" }}>
+                    {each.id}
+                  </td>
+                  <td style={{ border: "1px solid black" }}>{each.username}</td>
+                  <td style={{ border: "1px solid black" }}>{each.model}</td>
+                  <td style={{ border: "1px solid black" }}>{each.mobile}</td>
+                  <td style={{ border: "1px solid black" }}>{each.complaint}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-
-      <table style={{ border: "1px solid black", width: "50%" , margin:"50px"}}>
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid black",}}>S.No</th>
-            <th style={{ border: "1px solid black",}}>User Name</th>
-            <th style={{ border: "1px solid black",}}>Model Name</th>
-            <th style={{ border: "1px solid black",}}>Mobile Number</th>
-            <th style={{ border: "1px solid black",}}>Complaint</th>
-          </tr>
-        </thead>
-        <tbody>
-          {formData.map((each, index) => (
-            <tr key={each.id}>
-              <td style={{ border: "1px solid black", padding: "2px" }}>
-                {each.id}
-              </td>
-              <td style={{ border: "1px solid black",}}>{each.username}</td>
-              <td style={{ border: "1px solid black",}}>{each.model}</td>
-              <td style={{ border: "1px solid black",}}>{each.mobile}</td>
-              <td style={{ border: "1px solid black",}}>{each.complaint}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+      </div>
+    </div>
   );
 };
 

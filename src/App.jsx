@@ -1,9 +1,9 @@
-import UncontrolledForm from "./components/form-uncontrol/forms.jsx";
+import FormTable from "./components/forms-controlled/formInTable.jsx";
 
 function App() {
   return (
     <div>
-      <UncontrolledForm/>
+      <FormTable/>
     </div>
   );
 }
